@@ -1,0 +1,15 @@
+{
+  "isin_Code": "MD1234567891",
+  "title": "CypressTestDR",
+  "circulation_Term": "90 Day",
+  "nominal_Value": 2,
+  "current_Price": 15,
+  "currency": "EUR",
+  "interest_Rate": 6,
+  "yield": 7,
+  "indicative_Volume": 800,
+  "minimum_Order": 1,
+  "maximum_Order": 3,
+  "maximum_OwnershipQt": 5,
+  "coupon_PaymentsDate": "2024-05-19"
+}
