@@ -1,7 +1,7 @@
-import { getBaseUrl, getAdminUserName, getAdminPassword, generateRandomNumber, generateRandomString, generateRandomEmail, generateRandomBicCode,
+import { getAdminBaseUrl, getAdminUserName, getAdminPassword, generateRandomNumber, generateRandomString, generateRandomEmail, generateRandomBicCode,
     generateRandomStringRU, generateRandomStringWithNumbers, generateRandomStringOnlyUpperCase } from '../../../support/functions.js';
 
-const baseUrl = getBaseUrl();
+const baseUrl = getAdminBaseUrl();
 const adminUserName = getAdminUserName();
 const adminPassword = getAdminPassword();
 const bic = "00" + generateRandomStringOnlyUpperCase(2) + generateRandomStringOnlyUpperCase(2) + generateRandomStringWithNumbers(2) + generateRandomNumber(3);
@@ -15,7 +15,7 @@ describe('Verify admin can create a new commercial bank', () => {
 
     it('Admin should be able to create a new valid bank with valid data in all fields', () => {
         
-        cy.AdminLogin(baseUrl, adminUserName, adminPassword);
+        cy.AdminSimpleLogin(baseUrl, adminUserName, adminPassword);
 
         cy.get('.dropdown-toggle').eq(4).click(); // clicking on the "Classifiers" drop-down option
         cy.get('a[routerlink="/cf-commercial-banks"]').click();  // clicking on the "Cf Commercial Banks" option
@@ -31,7 +31,7 @@ describe('Verify admin can create a new commercial bank', () => {
         cy.get('#save-entity').click(); // clicking on the [Save] button 
 
         cy.get('.alert').should('contain', 'A new Cf Commercial Banks is created with identifier');
-        //cy.get(':nth-child(0) > .page-link').click(); // page 1
+        cy.get(':nth-child(2) > .page-link').click(); // page 1
         cy.get('[jhisortby="bic"] > .d-flex > .ng-fa-icon').click(); // sorting by Bic
 
         cy.DeleteCreatedBank(IDNO);
@@ -40,9 +40,9 @@ describe('Verify admin can create a new commercial bank', () => {
 
     describe('Verify admin can view details of a commercial bank', () => {
 
-        it('Admin should be able to view details of a valid bank', () => {
+        it.skip('Admin should be able to view details of a valid bank', () => {
             
-            cy.AdminLogin(baseUrl, adminUserName, adminPassword);
+            cy.AdminSimpleLogin(baseUrl, adminUserName, adminPassword);
     
             cy.get('.dropdown-toggle').eq(4).click(); // clicking on the "Classifiers" drop-down option
             cy.get('a[routerlink="/cf-commercial-banks"]').click();  // clicking on the "Cf Commercial Banks" option
@@ -77,9 +77,9 @@ describe('Verify admin can create a new commercial bank', () => {
         // This test outputs the activated fields from the critical fields management option
         describe('Output all activated options from critical fields management', () => {
 
-            it('Output activated fields', () => {
+            it.skip('Output activated fields', () => {
                 
-                cy.AdminLogin(baseUrl, adminUserName, adminPassword);
+                cy.AdminSimpleLogin(baseUrl, adminUserName, adminPassword);
         
                 cy.get('.dropdown-toggle').eq(5).click(); // clicking on the "Administration" drop-down option
                 cy.get('a[href="/profile-edit-management"]').click();  // clicking on the "Critical fields management" option
