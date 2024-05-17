@@ -1,5 +1,6 @@
 import { getInvestorBaseUrl, getInvestorIDNP, getInvestorPassword,  generateRandomNumber, generateRandomString, generateRandomEmail, generateRandomBicCode,
-    generateRandomStringRU, generateRandomStringWithNumbers, generateRandomStringOnlyUpperCase, generateRandomStringOnlyLowerCase, getAdminBaseUrl, getAdminUserName, getAdminPassword } from '../../support/functions.js';
+    generateRandomStringRU, generateRandomStringWithNumbers, generateRandomStringOnlyUpperCase, generateRandomStringOnlyLowerCase, getAdminBaseUrl, getAdminUserName,
+     getAdminPassword, InvestorLogin } from '../../support/functions.js';
 
 const adminBaseUrl = getAdminBaseUrl();
 const adminUsername = getAdminUserName();
@@ -9,7 +10,7 @@ const investorIDNP = getInvestorIDNP();
 const investorPassword = getInvestorPassword();
 const birthPlaceField = generateRandomStringOnlyUpperCase(7);
 const docSeriesField = "A";
-const docNumberField = generateRandomNumber(8);
+const docNumberField = "1" + generateRandomNumber(7);
 const docIssueOrganization = '"URTSIGER"SIRC" SÎ"';
 const addressLine = "str. " + generateRandomString(7) + " ." + generateRandomNumber(2);
 const postalCode = generateRandomNumber(5);
@@ -29,7 +30,7 @@ const lastName = "BORCILĂ";
 describe('Verify Investor can edit profile data', () => {
 
     //MCONNECT YES
-    it.skip('Investor should be able to edit profile with valid data in all fields, MConnect YES', () => {
+    it('Investor should be able to edit profile with valid data in all fields, MConnect YES', () => {
         
         cy.setInvestorCredentials(investorIDNP, investorPassword);
         cy.InvestorLogin(investorBaseUrl);
@@ -41,7 +42,7 @@ describe('Verify Investor can edit profile data', () => {
         cy.get('[data-cy="entityConfirmDeleteButton"]').click(); // clicking on the [YES] button to extract from register
 
         //-----General Information section-------------
-        cy.wait(3000);
+        cy.wait(4000);
         cy.get('#field_birthPlace').clear().type(birthPlaceField); // birthPlace
         cy.contains('Document').click();
         cy.SelectRandomDocType();
@@ -60,7 +61,7 @@ describe('Verify Investor can edit profile data', () => {
         //---Occupation section-----------
         cy.contains('Occupation').click();
         cy.get('#field_userOccupation').clear().type(occupation);
-        cy.wait(2000);
+        cy.wait(1000);
         cy.SelectRandomIncomeSource();
         cy.get('#field_employmentOrganization').clear().type(employmentOrganization);
         cy.get('#field_jobTitle').clear().type(jobTitle);
@@ -91,7 +92,7 @@ describe('Verify Investor can edit profile data', () => {
     });
 
     // MCONNECT NO
-    it('Investor should be able to edit profile with valid data in all fields, MConnect NO', () => {
+    it.skip('Investor should be able to edit profile with valid data in all fields, MConnect NO', () => {
 
         
         cy.setInvestorCredentials(investorIDNP, investorPassword);

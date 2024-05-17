@@ -49,9 +49,9 @@ Cypress.Commands.add('AdminSimpleLogin', (baseUrl, username, password) => {
     cy.url().should('include', '/login?prefix=iamadmin');
     cy.contains('Welcome back!');
     cy.contains('Sign in to your account to continue');
-    cy.wait(1000);
+    cy.wait(500);
     cy.get('#username').type(username);
-    cy.wait(1000);
+    cy.wait(500);
     cy.get('#password').type(password);
     cy.get('button[type="submit"]').click(); // [Sign In] button
     cy.contains('Welcome, to Retail Management!');
@@ -659,28 +659,33 @@ Cypress.Commands.add('SelectRandomBankCommercialBank', () => {
     COMERTBANK_BALTI : "(CMTBMD2X508) B.C.'COMERTBANK'S.A. suc.nr.2 Balti",
     COMERTBANK_CHISINAU_NR3 : "(CMTBMD2X511) B.C.'COMERTBANK'S.A. suc.nr.3 Chisinau",
     COMERTBANK_CHISINAU_NR4 : "(CMTBMD2X521) B.C.'COMERTBANK'S.A. suc.nr.4 Chisinau",
+    ENERGBANK: "(ENEGMD22) B.C.'ENERGBANK'S.A.",
+    ENERGBANK_CHISINAU: "(ENEGMD22409) B.C.'ENERGBANK'S.A. fil.'Ismail' Chisinau",
+    ENERGBANK_BOTANICA: "(ENEGMD22858) B.C.'ENERGBANK'S.A. suc.'Botanica' Chisinau"
   };
 
   // Click the dropdown element to open it
   cy.get('ng-select').click();
 
-  // Get the currently selected bank
-  cy.get('.ng-select-container').then(($container) => {
-    const selectedBank = $container.find('.ng-value-label').text().trim();
-    
+  // Get the currently selected bank from the field
+  cy.get('.ng-input > input').then(($input) => {
+    const selectedBankInField = $input.val().trim();
+
     // Filter out the selected bank from the available banks
-    const availableBanks = Object.values(bankOptions).filter(bank => bank !== selectedBank);
-    
+    const availableBanks = Object.values(bankOptions).filter(bank => bank !== selectedBankInField);
+
     // Get a random index to select a bank from the available banks
     const randomIndex = Math.floor(Math.random() * availableBanks.length);
-  
+
     // Get the randomly selected bank
     const randomBankValue = availableBanks[randomIndex];
-    
-    // Click the randomly selected bank
+
+    // Click the randomly selected bank from the dropdown
     cy.get('.ng-dropdown-panel-items').contains(randomBankValue).click();
+
   });
 });
+
 
 Cypress.Commands.add('ActivateEmailCriticalField', (emailCriticalField) => {
   
@@ -750,23 +755,23 @@ Cypress.Commands.add('ChangeInvestorProfileToActive', (lastName, birthPlace, use
  cy.contains(lastName); // validating that admin is on Investor's profile
 
  // validating the fields that were changed, first 2 tables
-   cy.contains(birthPlace).should('exist'); // birthPlace field
-   cy.contains(userOccupation).should('exist'); // userOccupation field
-   cy.contains(employmentOrganization).should('exist'); // employmentOrganization field
-   cy.contains(jobTitle).should('exist'); // jobTitle field
+   cy.contains(birthPlace).should('exist').should('be.visible'); // birthPlace field
+   cy.contains(userOccupation).should('exist').should('be.visible'); // userOccupation field
+   cy.contains(employmentOrganization).should('exist').should('be.visible'); // employmentOrganization field
+   cy.contains(jobTitle).should('exist').should('be.visible'); // jobTitle field
    
 
      // second 2 tables data
      //cy.contains(docType).should('exist'); // docType field
-     cy.contains(docSeries).should('exist'); // docSeries field
-     cy.contains(docNumber).should('exist'); // docNumber field
-     cy.contains(docIssueOrganization).should('exist'); // docIssueOrganization field
-     cy.contains(addressLine).should('exist'); // addressLine field
-     cy.contains(postalCode).should('exist'); // postalCode field
-     cy.contains(localityName).should('exist'); // localityName field
+     cy.contains(docSeries).should('exist').should('be.visible'); // docSeries field
+     cy.contains(docNumber).should('exist').should('be.visible'); // docNumber field
+     cy.contains(docIssueOrganization).should('exist').should('be.visible'); // docIssueOrganization field
+     cy.contains(addressLine).should('exist').should('be.visible'); // addressLine field
+     cy.contains(postalCode).should('exist').should('be.visible'); // postalCode field
+     cy.contains(localityName).should('exist').should('be.visible'); // localityName field
 
      cy.scrollTo('bottom'); // scrolling down
-     cy.wait(1000);
+     cy.wait(500);
 
    // third 2 tables data
     cy.contains(bankIban).should('exist');
