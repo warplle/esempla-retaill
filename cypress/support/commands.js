@@ -503,7 +503,13 @@ Cypress.Commands.add('DeleteCreatedGSGovernmentBond', (isinCode) => {
     
 });
 
-Cypress.Commands.add('VerifyingInvestorTabsAsAdmin', () => {
+Cypress.Commands.add('VerifyingInvestorTabsAsAdmin', (idnp) => {
+
+  // selecting investor with a specified IDNP (Adrian Borcila)
+  const tableBody = cy.get('tbody');
+  const matchingCell = tableBody.find('td').contains(idnp);
+  const matchingRow = matchingCell.parent().parent();
+  matchingRow.find('a[data-cy="entityDetailsButton"]').click();
 
   //General Information Table
   cy.get('[jhitranslate="retailManagementApp.investorProfiles.group.general"]').should('exist').should('be.visible').should('contain', 'General Information'); // validating table name text "General Information"
@@ -651,7 +657,13 @@ Cypress.Commands.add('VerifyingInvestorTabsAsAdmin', () => {
 
 });
 
-Cypress.Commands.add('CloseInvestorAccountAsAdmin', (reasonField) => {
+Cypress.Commands.add('CloseInvestorAccountAsAdmin', (idnp, reasonField) => {
+
+        // selecting investor with a specified IDNP (Adrian Borcila)
+        const tableBody = cy.get('tbody');
+        const matchingCell = tableBody.find('td').contains(idnp);
+        const matchingRow = matchingCell.parent().parent();
+        matchingRow.find('a[data-cy="entityDetailsButton"]').click();
 
   cy.get('[jhitranslate="entity.action.validate"]').should('exist').should('be.visible').should('contain', 'Validate'); // validating [Validate] button text
   cy.get('[jhitranslate="entity.action.validate"]').click(); // clicking on the [Validate] button
@@ -670,10 +682,16 @@ Cypress.Commands.add('CloseInvestorAccountAsAdmin', (reasonField) => {
 
 });
 
-Cypress.Commands.add('SetInvestorProfileStatusBackToActiveAsAdmin', () => {
+Cypress.Commands.add('SetInvestorProfileStatusBackToActiveAsAdmin', (idnp) => {
 
-  cy.get('[jhisortby="idnp"]').click(); //sorting ascending investor profiles
-  cy.get('[data-cy="entityDetailsButton"]').eq(0).click(); // clicking on the first investor from the list
+  //cy.get('[jhisortby="idnp"]').click(); //sorting ascending investor profiles
+  //cy.get('[data-cy="entityDetailsButton"]').eq(0).click(); // clicking on the first investor from the list
+
+   // selecting investor with a specified IDNP (Adrian Borcila)
+   const tableBody = cy.get('tbody');
+   const matchingCell = tableBody.find('td').contains(idnp);
+   const matchingRow = matchingCell.parent().parent();
+   matchingRow.find('a[data-cy="entityDetailsButton"]').click();
 
   cy.get('[jhitranslate="entity.action.validate"]').should('exist').should('be.visible').should('contain', 'Validate'); // validating [Validate] button text
   cy.get('[jhitranslate="entity.action.validate"]').click(); // clicking on the [Validate] button
