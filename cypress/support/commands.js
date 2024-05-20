@@ -503,6 +503,193 @@ Cypress.Commands.add('DeleteCreatedGSGovernmentBond', (isinCode) => {
     
 });
 
+Cypress.Commands.add('VerifyingInvestorTabsAsAdmin', () => {
+
+  //General Information Table
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.group.general"]').should('exist').should('be.visible').should('contain', 'General Information'); // validating table name text "General Information"
+
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.idnp"]').should('exist').should('be.visible').should('contain', 'Idnp'); // idnp field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.lastName"]').should('exist').should('be.visible').should('contain', 'Last Name'); // lastName field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.firstName"]').should('exist').should('be.visible').should('contain', 'First Name'); // firstName field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.citizenship"]').should('exist').should('be.visible').should('contain', 'Citizenship'); // citizenship field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.birthDate"]').should('exist').should('be.visible').should('contain', 'Birth Date'); // birthDate field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.birthPlace"]').should('exist').should('be.visible').should('contain', 'Birth Place'); // birthPlace field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.state"]').should('exist').should('be.visible').should('contain', 'State'); // state field
+
+  // Occupation Data Table
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.group.occupation"]').should('exist').should('be.visible').should('contain', 'Occupation Data'); // validating table name text "Occupation Date"
+
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.userOccupation"]').should('exist').should('be.visible').should('contain', 'User Occupation'); //userOccupation field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.employmentOrganization"]').should('exist').should('be.visible').should('contain', 'Employment Organization'); // employmentOrganization field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.declaredEmplOrganization"]').should('exist').should('be.visible').should('contain', 'Declared Empl Organization'); // declaredEmplOrganization field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.jobTitle"]').should('exist').should('be.visible').should('contain', 'Job Title'); // jobTitle field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.incomeSource"]').should('exist').should('be.visible').should('contain', 'Income Source'); // incomeSource field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.pep"]').should('exist').should('be.visible').should('contain', 'Pep'); // pep field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.reasonOfPep"]').should('exist').should('be.visible').should('contain', 'Reason Of Pep'); // reasonOfPep field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.closePep"]').should('exist').should('be.visible').should('contain', 'Close Pep'); // closePep field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.commentClosePep"]').should('exist').should('be.visible').should('contain', 'Comment Close Pep'); // commentClosePep field
+
+  // Document Table
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.group.document"]').should('exist').should('be.visible').should('contain', 'Document'); // validating table name text "Document"
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.docType"]').should('exist').should('be.visible').should('contain', 'Doc Type'); // docType field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.docSeries"]').should('exist').should('be.visible').should('contain', 'Doc Series'); // docSeries field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.docNumber"]').should('exist').should('be.visible').should('contain', 'Doc Number'); // docNumber field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.docIssueDate"]').should('exist').should('be.visible').should('contain', 'Doc Issue Date'); // docIssueDate field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.docExpiryDate"]').should('exist').should('be.visible').should('contain', 'Doc Expiry Date'); // docExpiryDate field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.docIssueOrganization"]').should('exist').should('be.visible').should('contain', 'Doc Issue Organization'); // docIssueOrganization field
+
+  // Permanent and/or Residence Address Table
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.group.address"]').should('exist').should('be.visible').should('contain', 'Permanent and / or Residence Address'); // validating table text name "Permanent and / or Residence Address"
+
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.addressLine"]').should('exist').should('be.visible').should('contain', 'Address Line'); // addressLine field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.addressLine2"]').should('exist').should('be.visible').should('contain', 'Address Line 2'); // addressLine2 field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.postalCode"]').should('exist').should('be.visible').should('contain', 'Postal Code'); // postalCode field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.localityName"]').should('exist').should('be.visible').should('contain', 'Locality Name'); // localityName field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.countryName"]').should('exist').should('be.visible').should('contain', 'Country Name'); // countryName field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.residenceCountry"]').should('exist').should('be.visible').should('contain', 'Residence Country'); // residenceCountry field
+
+
+  // Bank Account Table
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.group.bank"]').should('exist').should('be.visible').should('contain', 'Bank Account'); // validating table text name "Bank Account"
+
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.bankIban"]').should('exist').should('be.visible').should('contain', 'Bank Iban'); // bankIban field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.bankCommercialBank"]').should('exist').should('be.visible').should('contain', 'Bank Commercial Bank'); // bankCommercialBank field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.bankIdno"]').should('exist').should('be.visible').should('contain', 'Bank Idno'); // bankIdno field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.bankBic"]').should('exist').should('be.visible').should('contain', 'Bank Bic'); // bankBic field
+
+  // Contact Table
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.group.contact"]').should('exist').should('be.visible').should('contain', 'Contact'); // validating table text name "Contact"
+
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.phone"]').should('exist').should('be.visible').should('contain', 'Phone'); // phone field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.email"]').should('exist').should('be.visible').should('contain', 'Email'); // email field
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.declaration"]').should('exist').should('be.visible').should('contain', 'Declaration'); // declarationField
+
+
+  //-----------Portofolio Tab-------------------------------------
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.detail.tabPortfolio"]').click(); // clicking on the "Portofolio" tab
+
+  cy.get('[jhitranslate="portofolio.treasuryBonds"]').should('exist').should('be.visible').should('contain', 'Treasury Bonds'); // validating "treasuryBonds" text
+  cy.get('[jhitranslate="portofolio.governmentBonds"]').should('exist').should('be.visible').should('contain', 'Government Bonds'); // validating "GovernmentBonds" text
+  cy.get('[jhitranslate="portofolio.total"]').should('exist').should('be.visible').should('contain', 'Total'); // validating "Total" text
+
+  // Basic(visible) Fields
+  cy.get('[jhitranslate="portofolio.isinCode"]').should('exist').should('be.visible').should('contain', 'ISIN Code'); // isinCode field
+  cy.get('[jhitranslate="portofolio.transactionType"]').should('exist').should('be.visible').should('contain', 'Transaction Type'); // transactionType field
+  cy.get('[jhitranslate="portofolio.volumeUnits"]').should('exist').should('be.visible').should('contain', 'Volume (units)'); // volumeUnits field
+  cy.get('[jhitranslate="portofolio.volumeMDL"]').should('exist').should('be.visible').should('contain', 'Volume (MDL)'); // volume(MDL) field
+  cy.get('[jhitranslate="transactions.yield"]').should('exist').should('be.visible').should('contain', 'Yield');  // yield Field
+  cy.get('[jhitranslate="transactions.maturityDate"]').should('exist').should('be.visible').should('contain', 'Maturity Date'); // maturityDate field
+  cy.get('[jhitranslate="transactions.details"]').should('exist').should('be.visible').should('contain', 'Details'); // [Details] button
+
+  // After clicking on the [Details] fields
+  cy.get('[jhitranslate="transactions.details"]').eq(0).click(); // clicking on the [Details] button, first option
+
+  cy.get('[jhitranslate="portofolio.isinCode"]').eq(1).should('exist').should('be.visible').should('contain', 'ISIN Code'); // isinCode field
+  cy.get('[jhitranslate="portofolio.nominalValue"]').should('exist').should('be.visible').should('contain', 'Nominal Value (MDL)'); // nominalValue field
+  cy.get('[jhitranslate="portofolio.issueDate"]').should('exist').should('be.visible').should('contain', 'Issue Date'); // issueDate field
+  cy.get('[jhitranslate="portofolio.maturityDate"]').should('exist').should('be.visible').should('contain', 'Maturity Date'); //maturityDate field ??
+  cy.get('[jhitranslate="portofolio.circulationTerm"]').should('exist').should('be.visible').should('contain', 'Circulation Term'); // circulationTerm field
+  cy.get('[jhitranslate="portofolio.yield"]').should('exist').should('be.visible').should('contain', 'Yield (%)'); // yield field ??
+  cy.get('[jhitranslate="portofolio.couponPaymentDates"]').should('exist').should('be.visible').should('contain', 'Coupon Payment Dates'); // couponPaymentDates field
+  cy.get('[jhitranslate="portofolio.sellingOnSecondaryMarket"]').should('exist').should('be.visible').should('contain', 'Selling on Secondary Market'); // sellingOnSecondaryMarket field
+  cy.get('[jhitranslate="portofolio.purchaseVolume"]').should('exist').should('be.visible').should('contain', 'Purchase Volume (units)'); // purchaseVolume(units) field
+  cy.get('[jhitranslate="portofolio.purchaseAmount"]').should('exist').should('be.visible').should('contain', 'Purchase Amount (MDL)'); // purchaseAmount(MDL) field
+  cy.get('[jhitranslate="portofolio.amountMaturityMDL"]').should('exist').should('be.visible').should('contain', 'Amount at Maturity (MDL)'); // amountAtMaturity(MDL) field
+  cy.get('[jhitranslate="portofolio.yield"]').should('exist').should('be.visible').should('contain', 'Yield (%)'); // yield field
+  cy.get('[jhitranslate="portofolio.valueDate"]').should('exist').should('be.visible').should('contain', 'Value at Date'); // valueAtDate field
+  cy.get('[jhitranslate="portofolio.transactionInformation"]').should('exist').should('be.visible').should('contain', 'Transaction Information'); // transactionInformation field
+  cy.get('[jhitranslate="portofolio.active"]').should('exist').should('be.visible').should('contain', 'Active'); // active field
+  cy.get('[jhitranslate="portofolio.blocked"]').should('exist').should('be.visible').should('contain', 'Blocked'); // blocked field
+  cy.get('[jhitranslate="portofolio.reasonBlocked"]').should('exist').should('be.visible').should('contain', 'Reason for Blocked'); // reasonForBlocked field
+
+
+  //-----------Transactions Tab---------------------------------------------------------
+
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.detail.tabTransactions"]').click(); // clicking on the "Transaction" tab
+
+  cy.get('[jhitranslate="transactions.isinCode"]').should('exist').should('be.visible').should('contain', 'ISIN Code'); // isinCode field
+  cy.get('[jhitranslate="transactions.transactionType"]').should('exist').should('be.visible').should('contain', 'Transaction Type'); // transactionType column
+  cy.get('[jhitranslate="transactions.transactionDate"]').should('exist').should('be.visible').should('contain', 'Transaction Date'); // transactionDate column
+  cy.get('[jhitranslate="transactions.transactionAmount"]').should('exist').should('be.visible').should('contain', 'Transaction Amount'); // transactionAmount column
+  cy.get('[jhitranslate="transactions.referenceNumber"]').should('exist').should('be.visible').should('contain', 'Reference Number'); // referenceNumber column
+  cy.get('[jhitranslate="transactions.status"]').should('exist').should('be.visible').should('contain', 'Status'); // status field
+  cy.get('[jhitranslate="transactions.details"]').should('exist').should('be.visible').should('contain', 'Details'); // details column
+
+  // Viewing details of a transactions
+  cy.get('[jhitranslate="transactions.details"]').eq(0).click(); // clicking on the [Details] button, first option
+
+  cy.get('[jhitranslate="transactions.orderKey"]').should('exist').should('be.visible').should('contain', 'Order Key'); // orderKey field
+  cy.get('[jhitranslate="transactions.securityName"]').should('exist').should('be.visible').should('contain', 'Security Name'); // securityName field
+  cy.get('[jhitranslate="transactions.nominalValue"]').should('exist').should('be.visible').should('contain', 'Nominal Value (MDL)'); // nominalValue(MDL) field
+  cy.get('[jhitranslate="transactions.issueDate"]').should('exist').should('be.visible').should('contain', 'Issue Date'); // issueDate field
+  cy.get('[jhitranslate="transactions.maturityDate"]').should('exist').should('be.visible').should('contain', 'Maturity Date'); // maturityDate field
+  cy.get('[jhitranslate="transactions.circulationTerm"]').should('exist').should('be.visible').should('contain', 'Circulation Term'); // circulationTerm field
+  cy.get('[jhitranslate="transactions.yield"]').should('exist').should('be.visible').should('contain', 'Yield'); // yield field
+  cy.get('[jhitranslate="transactions.couponPaymentDates"]').should('exist').should('be.visible').should('contain', 'Coupon Payment Dates'); // couponPaymentDates field
+  cy.get('[jhitranslate="transactions.sellingOnSecondaryMarket"]').should('exist').should('be.visible').should('contain', 'Selling on Secondary Market'); // sellingOnSecondaryMarket field
+  cy.get('[jhitranslate="transactions.purchaseVolume"]').should('exist').should('be.visible').should('contain', 'Purchase Volume (units)'); // purchaseVolume(units) field
+  cy.get('[jhitranslate="transactions.purchaseAmount"]').should('exist').should('be.visible').should('contain', 'Purchase Amount (MDL)'); // purchaseAmount(MDL) field
+  cy.get('[jhitranslate="transactions.investor"]').should('exist').should('be.visible').should('contain', 'Investor Name (IDNP)'); // investorName(MDL) field
+  cy.get('[jhitranslate="transactions.paymentBankAccount"]').should('exist').should('be.visible').should('contain', 'Investor IBAN'); // investorIBAN field
+  cy.get('[jhitranslate="transactions.commercialBank"').should('exist').should('be.visible').should('contain', 'Commercial Bank'); // commercialBank field
+  cy.get('[jhitranslate="transactions.sourceOfFunds"]').should('exist').should('be.visible').should('contain', 'Source of Funds'); // sourceOfFunds field
+  cy.get('[jhitranslate="transactions.orderDueDate"]').should('exist').should('be.visible').should('contain', 'Order Due Date'); //orderDueDate field
+  cy.get('[jhitranslate="transactions.orderPaidAt"]').should('exist').should('be.visible').should('contain', 'Order Paid At'); // orderPaidAt field
+  cy.get('[jhitranslate="transactions.orderInvoiceNr"]').should('exist').should('be.visible').should('contain', 'Order Invoice ID'); // orderInvoiceID field
+
+
+  //-------------History Tab------------------------------------------------------------
+  
+  cy.get('[jhitranslate="retailManagementApp.investorProfiles.detail.tabHistory"]').click(); // clicking on the "History" tab
+
+  cy.get('[jhitranslate="audits.table.header.date"]').should('exist').should('be.visible').should('contain', 'Date and time'); // dateAndTime column
+  cy.get('[jhitranslate="audits.table.header.principal"]').should('exist').should('be.visible').should('contain', 'User'); // User column
+  cy.get('[jhitranslate="audits.table.header.action"]').should('exist').should('be.visible').should('contain', 'Action'); // Action column
+  cy.contains('Details').should('exist').should('be.visible').should('contain', 'Details'); //  // Details column
+  //cy.get('[]').should('exist').should('be.visible').should('contain', '');
+
+
+});
+
+Cypress.Commands.add('CloseInvestorAccountAsAdmin', (reasonField) => {
+
+  cy.get('[jhitranslate="entity.action.validate"]').should('exist').should('be.visible').should('contain', 'Validate'); // validating [Validate] button text
+  cy.get('[jhitranslate="entity.action.validate"]').click(); // clicking on the [Validate] button
+
+  cy.get('[ng-reflect-jhi-translate="entity.validate.title"]').should('exist').should('be.visible').should('contain', 'Confirm validate operation');
+  cy.get('[ng-reflect-jhi-translate="retailManagementApp.investorPr"]').should('exist').should('be.visible').should('contain', 'Are you sure you want to validate Investor Profile ');
+
+  cy.get('[aria-autocomplete="list"]').click(); // clicking on the drop-down
+  cy.contains('Closed').click(); // clicking on the "Closed" option
+  cy.get('#field_reason').type(reasonField);
+
+  cy.get('#jhi-confirm-validate-investorProfile').click(); // clicking on the [Save] button
+  
+  cy.url().should('include', '/investor-profiles'); // validating that user is redirected back to the investor profiles
+  cy.contains('Investor Profiles'); 
+
+});
+
+Cypress.Commands.add('SetInvestorProfileStatusBackToActiveAsAdmin', () => {
+
+  cy.get('[jhisortby="idnp"]').click(); //sorting ascending investor profiles
+  cy.get('[data-cy="entityDetailsButton"]').eq(0).click(); // clicking on the first investor from the list
+
+  cy.get('[jhitranslate="entity.action.validate"]').should('exist').should('be.visible').should('contain', 'Validate'); // validating [Validate] button text
+  cy.get('[jhitranslate="entity.action.validate"]').click(); // clicking on the [Validate] button
+
+  cy.get('[ng-reflect-jhi-translate="entity.validate.title"]').should('exist').should('be.visible').should('contain', 'Confirm validate operation');
+
+  cy.get('[aria-autocomplete="list"]').click(); // clicking on the drop-down
+  cy.get('.ng-option').eq(2).click(); // clicking on the "Active" option
+
+  cy.get('#jhi-confirm-validate-investorProfile').click(); // clicking on the [Save] button
+  
+  cy.url().should('include', '/investor-profiles'); // validating that user is redirected back to the investor profiles
+  cy.contains('Investor Profiles'); 
+
+});
+
 // ----------- Classifiers Commands---------------------------
 Cypress.Commands.add('AddNewCommercialBank', () => {
 
@@ -784,8 +971,9 @@ Cypress.Commands.add('ChangeInvestorProfileToActive', (lastName, birthPlace, use
 
 });
 
-
 Cypress.Commands.add('ValidateCriticalFieldData', () => {
 
 
 });
+
+
