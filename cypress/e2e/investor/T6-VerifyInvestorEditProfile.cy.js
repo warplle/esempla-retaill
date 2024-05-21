@@ -25,8 +25,6 @@ const lastName = "BORCILĂ";
 
 
 
-
-
 describe('Verify Investor can edit profile data', () => {
 
     //MCONNECT YES
@@ -68,9 +66,18 @@ describe('Verify Investor can edit profile data', () => {
 
         //---Bank Account section-------
         cy.contains('Bank Account').click();
-        cy.get('#field_bankIban').clear().type(bankIban);
-        cy.SelectRandomBankCommercialBank();
 
+        // 
+        cy.get('[formcontrolname="bankIban"]').click(); // clicking on the Bank Iban field
+        //cy.get('.ng-option').eq(1).click(); //selecting second option available 
+
+        //saving the option text to a variable, in most cases the user will have 1 bankIban
+        let bankIbanOption;
+        cy.get('.ng-option').eq(1).then($option => {
+            bankIbanOption = $option.text().trim();
+            cy.get('.ng-option').eq(1).click();
+
+        cy.SelectRandomBankCommercialBank();
 
         //---Contact Information--------------
         cy.contains('Contact Information').click();
@@ -81,18 +88,15 @@ describe('Verify Investor can edit profile data', () => {
         cy.get('span[jhitranslate="entity.action.update"]').click(); // clicking on the [Update] button
         
         // Log in as Administrator(operator) to change the status to active
-
-        // cy.setAdminCredentials(adminUsername, adminPassword);
-        // cy.AdminLogin(adminBaseUrl);
         cy.AdminSimpleLogin(adminBaseUrl, adminUsername, adminPassword);
         cy.ChangeInvestorProfileToActive(lastName, birthPlaceField, occupation, employmentOrganization, jobTitle, 
          docSeriesField, docNumberField, docIssueOrganization, addressLine, postalCode, localityName,
-        bankIban, phoneNumber, email);
-
+        bankIbanOption, phoneNumber, email);
+        });
     });
 
     // MCONNECT NO
-    it.skip('Investor should be able to edit profile with valid data in all fields, MConnect NO', () => {
+    it('Investor should be able to edit profile with valid data in all fields, MConnect NO', () => {
 
         
         cy.setInvestorCredentials(investorIDNP, investorPassword);
@@ -131,26 +135,32 @@ describe('Verify Investor can edit profile data', () => {
 
         //---Bank Account section-------
         cy.contains('Bank Account').click();
-        cy.get('#field_bankIban').clear().type(bankIban);
-        cy.SelectRandomBankCommercialBank();
 
+        //cy.get('[formcontrolname="bankIban"]').clear().type(bankIban);
+        cy.get('[formcontrolname="bankIban"]').click();
 
-        //---Contact Information--------------
-        cy.contains('Contact Information').click();
-        cy.get('#field_email').clear().type(email);
-        cy.get('#phone').clear().type(phoneNumber);
+       //saving the option text to a variable, in most cases the user will have 1 bankIban
+       let bankIbanOption;
+       cy.get('.ng-option').eq(0).then($option => {
+           bankIbanOption = $option.text().trim();
+           cy.get('.ng-option').eq(0).click();
 
-        //cy.get('[data-cy="declaration"]').click(); //clickig on the checkbox button
-        cy.get('span[jhitranslate="entity.action.update"]').click(); // clicking on the [Update] button
-        
-        // Log in as Administrator(operator) to change the status to active
+       cy.SelectRandomBankCommercialBank();
 
-        // cy.setAdminCredentials(adminUsername, adminPassword);
-        // cy.AdminLogin(adminBaseUrl);
-        cy.AdminSimpleLogin(adminBaseUrl, adminUsername, adminPassword);
-        cy.ChangeInvestorProfileToActive(lastName, birthPlaceField, occupation, employmentOrganization, jobTitle, 
-         docSeriesField, docNumberField, docIssueOrganization, addressLine, postalCode, localityName,
-        bankIban, phoneNumber, email);
+       //---Contact Information--------------
+       cy.contains('Contact Information').click();
+       cy.get('#field_email').clear().type(email);
+       cy.get('#phone').clear().type(phoneNumber);
+
+       //cy.get('[data-cy="declaration"]').click(); //clickig on the checkbox button
+       cy.get('span[jhitranslate="entity.action.update"]').click(); // clicking on the [Update] button
+       
+       // Log in as Administrator(operator) to change the status to active
+       cy.AdminSimpleLogin(adminBaseUrl, adminUsername, adminPassword);
+       cy.ChangeInvestorProfileToActive(lastName, birthPlaceField, occupation, employmentOrganization, jobTitle, 
+        docSeriesField, docNumberField, docIssueOrganization, addressLine, postalCode, localityName,
+       bankIbanOption, phoneNumber, email);
+       });
     });
 
 });

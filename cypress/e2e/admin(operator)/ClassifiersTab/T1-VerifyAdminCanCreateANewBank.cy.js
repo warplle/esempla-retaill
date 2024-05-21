@@ -17,7 +17,7 @@ describe('Verify admin can create a new commercial bank', () => {
         
         cy.AdminSimpleLogin(baseUrl, adminUserName, adminPassword);
 
-        cy.get('.dropdown-toggle').eq(4).click(); // clicking on the "Classifiers" drop-down option
+        cy.contains('Classifiers').click(); // clicking on the "Classifiers" drop-down option
         cy.get('a[routerlink="/cf-commercial-banks"]').click();  // clicking on the "Cf Commercial Banks" option
         cy.get('#jh-create-entity').click(); // clicking on the [Add new] button
 
@@ -40,11 +40,11 @@ describe('Verify admin can create a new commercial bank', () => {
 
     describe('Verify admin can view details of a commercial bank', () => {
 
-        it.skip('Admin should be able to view details of a valid bank', () => {
+        it('Admin should be able to view details of a valid bank', () => {
             
             cy.AdminSimpleLogin(baseUrl, adminUserName, adminPassword);
     
-            cy.get('.dropdown-toggle').eq(4).click(); // clicking on the "Classifiers" drop-down option
+            cy.contains('Classifiers').click(); // clicking on the "Classifiers" drop-down option
             cy.get('a[routerlink="/cf-commercial-banks"]').click();  // clicking on the "Cf Commercial Banks" option
             //cy.get('a[data-cy="entityDetailsButton"]').eq(1).click(); // clicking on the [Details] button
 
@@ -77,11 +77,11 @@ describe('Verify admin can create a new commercial bank', () => {
         // This test outputs the activated fields from the critical fields management option
         describe('Output all activated options from critical fields management', () => {
 
-            it.skip('Output activated fields', () => {
+            it('Output activated fields', () => {
                 
                 cy.AdminSimpleLogin(baseUrl, adminUserName, adminPassword);
         
-                cy.get('.dropdown-toggle').eq(5).click(); // clicking on the "Administration" drop-down option
+                cy.contains('Administration').click(); // clicking on the "Administration" drop-down option
                 cy.get('a[href="/profile-edit-management"]').click();  // clicking on the "Critical fields management" option
 
                 // outputting the options that have status "Activated"

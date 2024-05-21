@@ -362,7 +362,7 @@ Cypress.Commands.add('RandomlyCheckboxClick', () => {
     // Format the date as "day/month/year"
     const year = now.getFullYear();
     const month = String(futureDate.getMonth() + 1).padStart(2, '0');
-    const day = String(futureDate.getDate()).padStart(2, '0');
+    const day = String(futureDate.getDate()).padStart(2, '');
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const futureDateTime = `${day}.${month}.${year} ${hours}:${minutes}`;
@@ -371,7 +371,7 @@ Cypress.Commands.add('RandomlyCheckboxClick', () => {
     cy.get('#field_subscriptionEndDate > .input-group > .btn').click();
 
     // Click on the current date in the datepicker
-    cy.contains('.ngb-dp-day', day).click();
+    cy.contains('.btn-light', day).click();
 
     // Confirm that the date has been selected
     //cy.get('#field_subscriptionEndDate').should('have.value', futureDateTime);
@@ -415,7 +415,7 @@ Cypress.Commands.add('GenerateFutureDateTimeEndDateFieldGB', () => {
   // Format the date as "day/month/year"
   const year = now.getFullYear();
   const month = String(futureDate.getMonth() + 1).padStart(2, '0');
-  const day = String(futureDate.getDate()).padStart(2, '0');
+  const day = String(futureDate.getDate()).padStart(2, '');
   const hours = String(now.getHours()).padStart(2, '0');
   const minutes = String(now.getMinutes()).padStart(2, '0');
   const futureDateTime = `${day}.${month}.${year} ${hours}:${minutes}`;
@@ -477,6 +477,140 @@ Cypress.Commands.add('DeleteCreatedGSTreasuryBill', (isinCode) => {
 
         cy.get('div.top.right ngb-alert.alert-success').should('contain', 'A Government Securities is deleted with identifier'); // validating delete action
 
+
+});
+
+Cypress.Commands.add('ViewDetailsCreatedTreasuryBills', (securitiesNameTreasuryBills, isinCode, nominalValue, currentPrice, indicativeVolume, minimumOrder) => {
+
+  cy.get('#page-heading').should('contain', 'Government Securities');
+  cy.get('.alert').should('contain', 'A new Government Securities is created with identifier');
+
+        const tableBody = cy.get('tbody');
+
+        // Find the rows (td elements) containing the code
+        const matchingCell = tableBody.find('td').contains(isinCode);
+
+        // Get the first matching row
+        const matchingRow = matchingCell.parent().parent();
+
+        // Click the edit button within the first matching row (assuming button class is 'edit-btn')
+        cy.wait(1000);
+        matchingRow.find('[data-cy="entityDetailsButton"]').click();
+
+       //Asserting the data of the created GS Treasury Bills
+
+       cy.get('div[class="mt-2 tab-content"]') // validating the name of the fields
+                .should('contain', 'Securities Name')
+                .should('contain', 'Isin Code')
+                .should('contain', 'Circulation Term')
+                .should('contain', 'Issue Date')
+                .should('contain', 'Maturity Date')
+                .should('contain', 'Nominal Value')
+                .should('contain', 'Current Price')
+                .should('contain', 'Yield')
+                .should('contain', 'State')
+                .should('contain', 'Currency')
+                .should('contain', 'Mandatory Early Redemption')
+                .should('contain', 'Secondary Market Sell')
+                .should('contain', 'Subscription Start Date')
+                .should('contain', 'Subscription End Date')
+                .should('contain', 'Indicative Volume')
+                .should('contain', 'Min Order')
+                .should('contain', 'Max Order')
+                .should('contain', 'Max Ownership')
+                .should('contain', 'Fees Applied')
+
+                
+                cy.get('.col-12') // validating the user's input in the fields
+                //.should('contain', type).should('exist').should('be.visible').should('not.be.empty')
+                .should('contain', securitiesNameTreasuryBills).should('exist').should('be.visible').should('not.be.empty')
+                .should('contain', isinCode).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', circulationTerm).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', issueDate).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', maturityDate).should('exist').should('be.visible').should('not.be.empty')
+                .should('contain', nominalValue).should('exist').should('be.visible').should('not.be.empty')
+                .should('contain', currentPrice).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', yieldValue).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', state).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', currency).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', mandatoryEarlyRedemption).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', secondaryMarketSell).should('exist').should('be.visible').should('not.be.empty')
+
+                //.should('contain', subscriptionStartDate).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', subscriptionEndDate).should('exist').should('be.visible').should('not.be.empty')
+                .should('contain', indicativeVolume).should('exist').should('be.visible').should('not.be.empty')
+                .should('contain', minimumOrder).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', maximumOrder).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', maximumOwnership).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', stateField).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', feesApplied).should('exist').should('be.visible').should('not.be.empty');
+
+});
+
+Cypress.Commands.add('ViewDetailsCreatedGovernmentBonds', (securitiesNameTreasuryBills, isinCode, nominalValue, indicativeVolume, minimumOrder) => {
+
+  cy.get('#page-heading').should('contain', 'Government Securities');
+  cy.get('.alert').should('contain', 'A new Government Securities is created with identifier');
+
+        const tableBody = cy.get('tbody');
+
+        // Find the rows (td elements) containing the code
+        const matchingCell = tableBody.find('td').contains(isinCode);
+
+        // Get the first matching row
+        const matchingRow = matchingCell.parent().parent();
+
+        // Click the edit button within the first matching row (assuming button class is 'edit-btn')
+        cy.wait(1000);
+        matchingRow.find('[data-cy="entityDetailsButton"]').click();
+
+       //Asserting the data of the created GS Treasury Bills
+
+       cy.get('div[class="mt-2 tab-content"]') // validating the name of the fields
+                .should('contain', 'Securities Name')
+                .should('contain', 'Isin Code')
+                .should('contain', 'Circulation Term')
+                .should('contain', 'Issue Date')
+                .should('contain', 'Maturity Date')
+                .should('contain', 'Nominal Value')
+                .should('contain', 'Coupon Rate')
+                //.should('contain', 'Yield')
+                .should('contain', 'State')
+                .should('contain', 'Currency')
+                .should('contain', 'Mandatory Early Redemption')
+                .should('contain', 'Secondary Market Sell')
+                .should('contain', 'Subscription Start Date')
+                .should('contain', 'Subscription End Date')
+                .should('contain', 'Indicative Volume')
+                .should('contain', 'Min Order')
+                .should('contain', 'Max Order')
+                .should('contain', 'Max Ownership')
+                .should('contain', 'Fees Applied')
+
+                
+                cy.get('.col-12') // validating the user's input in the fields
+                //.should('contain', type).should('exist').should('be.visible').should('not.be.empty')
+                .should('contain', securitiesNameTreasuryBills).should('exist').should('be.visible').should('not.be.empty')
+                .should('contain', isinCode).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', circulationTerm).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', issueDate).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', maturityDate).should('exist').should('be.visible').should('not.be.empty')
+                .should('contain', nominalValue).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', currentPrice).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', yieldValue).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', state).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', currency).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', mandatoryEarlyRedemption).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', secondaryMarketSell).should('exist').should('be.visible').should('not.be.empty')
+
+                //.should('contain', subscriptionStartDate).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', subscriptionEndDate).should('exist').should('be.visible').should('not.be.empty')
+                .should('contain', indicativeVolume).should('exist').should('be.visible').should('not.be.empty')
+                .should('contain', minimumOrder).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', maximumOrder).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', maximumOwnership).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', stateField).should('exist').should('be.visible').should('not.be.empty')
+                //.should('contain', feesApplied).should('exist').should('be.visible').should('not.be.empty');
 
 });
 
@@ -742,6 +876,18 @@ Cypress.Commands.add('AddNewCommercialBank', () => {
 
 //-----------------------------INVESTOR--------------------------------------------------------------------------------
 
+
+// Cypress.Commands.add('InvestorSimpleLogin', (baseUrl, investorIDNP, investorPassword) => {
+
+//     cy.visit('https://retail.esempla.systems/');
+//     cy.get('[jhitranslate="global.menu.account.authentication"]').click(); // clicking on the [Authentication] button
+//     cy.get('#UsernamePassword').clear().type(investorIDNP);
+//     cy.get('#Password').clear().type(investorPassword);
+//     cy.get('.register-title').should('contain', 'Portofolio');
+
+
+// });
+
 Cypress.Commands.add('setInvestorCredentials', (IDNP, password) => {
   Cypress.env('originIDNP', IDNP);
   Cypress.env('originPassword', password);
@@ -870,7 +1016,7 @@ Cypress.Commands.add('SelectRandomBankCommercialBank', () => {
   };
 
   // Click the dropdown element to open it
-  cy.get('ng-select').click();
+  cy.get('[formcontrolname="bankCommercialBank"]').click();
 
   // Get the currently selected bank from the field
   cy.get('.ng-input > input').then(($input) => {
@@ -985,7 +1131,10 @@ Cypress.Commands.add('ChangeInvestorProfileToActive', (lastName, birthPlace, use
 
    cy.get('[ng-reflect-jhi-translate="global.boolean.true"]').should('contain', "Yes") // declaration field
 
-
+    // cy.contains('Validate').click();
+    // cy.get('.ng-input').click(); // clicking on the drop-down
+    // cy.contains('Active').click();
+    // cy.contains('Save').click();
 
 });
 

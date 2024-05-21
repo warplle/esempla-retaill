@@ -14,6 +14,10 @@ const nominalValue = "3" + generateRandomNumber(2);
 const currentPrice = "1" + generateRandomNumber(2);
 const indicativeVolume = "1" + generateRandomNumber(2);
 const minimumOrder = "1" + generateRandomNumber(1);
+const couponRate = '7'; // governmentsBonds type
+const securitiesNameTreasuryBills = "Treasury Bills";
+const securitiesNameGovernmentBonds = 'Government Bonds';
+
 
 
 describe('Verify admin can create a new GS Placement', () => {
@@ -22,7 +26,7 @@ describe('Verify admin can create a new GS Placement', () => {
         
         cy.AdminSimpleLogin(baseUrl, adminUserName, adminPassword);
 
-        cy.get('.dropdown-toggle').eq(3).click(); // clicking on the "GS Placement" drop-down option
+        cy.contains('GS Components').click(); // clicking on the "GS Components" drop-down option
         cy.get('a[routerlink="/government-securities-placement"]').click();  // clicking on the "GS Placement" option
         cy.wait(1000);
         cy.get('[data-cy="entityCreateButton"]').debug().click(); // clicking on the [Add new]
@@ -51,17 +55,19 @@ describe('Verify admin can create a new GS Placement', () => {
          // fees applied "NO"
  
          cy.get('#save-entity').click();
-         cy.DeleteCreatedGSTreasuryBill(isinCode); 
+
+         // validating dentered data
+         cy.ViewDetailsCreatedTreasuryBills(securitiesNameTreasuryBills, isinCode, nominalValue, currentPrice, indicativeVolume, minimumOrder);
         
     });
 
-    it.skip('Admin should be able to create a new valid GS placement Government Bonds with valid data in all fields', () => {
+    it('Admin should be able to create a new valid GS placement Government Bonds with valid data in all fields', () => {
         
         cy.AdminSimpleLogin(baseUrl, adminUserName, adminPassword);
 
-        cy.get('.dropdown-toggle').eq(3).click(); // clicking on the "GS Components" drop-down option
-        cy.get('a[routerlink="/cf-commercial-banks"]').click();  // clicking on the "GS Placement" option
-        cy.get('#jh-create-entity').click(); // clicking on the [Add new] button
+        cy.contains('GS Components').click(); // clicking on the "GS Components" drop-down option
+        cy.get('[routerlink="/government-securities-placement"]').click();  // clicking on the "GS Placement" option
+        cy.get('[data-cy="entityCreateButton"]').click().click(); // clicking on the [Add new] button
 
         cy.get('#field_securitiesName').select('Government Bonds');
         cy.get('#field_isinCode').type(isinCode);
@@ -83,7 +89,7 @@ describe('Verify admin can create a new GS Placement', () => {
         // fees applied "NO"
 
         cy.get('#save-entity').click();
-        cy.DeleteCreatedGSGovernmentBond(isinCode);
+        cy.ViewDetailsCreatedGovernmentBonds(securitiesNameGovernmentBonds, isinCode, nominalValue, indicativeVolume, minimumOrder);
     });
 });
 
