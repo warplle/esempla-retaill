@@ -843,17 +843,6 @@ Cypress.Commands.add('SetInvestorProfileStatusBackToActiveAsAdmin', (idnp) => {
 });
 
 // ----------- Classifiers Commands---------------------------
-Cypress.Commands.add('AddNewCommercialBank', () => {
-
-});
-
-Cypress.Commands.add('AddNewCountry', () => {
-  
-});
-
-Cypress.Commands.add('AddNewSourceIncome', () => {
-  
-});
 
 Cypress.Commands.add('AddNewCirculationTerm', () => {
   
@@ -875,18 +864,6 @@ Cypress.Commands.add('AddNewCommercialBank', () => {
 
 
 //-----------------------------INVESTOR--------------------------------------------------------------------------------
-
-
-// Cypress.Commands.add('InvestorSimpleLogin', (baseUrl, investorIDNP, investorPassword) => {
-
-//     cy.visit('https://retail.esempla.systems/');
-//     cy.get('[jhitranslate="global.menu.account.authentication"]').click(); // clicking on the [Authentication] button
-//     cy.get('#UsernamePassword').clear().type(investorIDNP);
-//     cy.get('#Password').clear().type(investorPassword);
-//     cy.get('.register-title').should('contain', 'Portofolio');
-
-
-// });
 
 Cypress.Commands.add('setInvestorCredentials', (IDNP, password) => {
   Cypress.env('originIDNP', IDNP);

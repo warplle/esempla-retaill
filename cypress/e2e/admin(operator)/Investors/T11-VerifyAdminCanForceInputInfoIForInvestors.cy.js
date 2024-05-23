@@ -11,7 +11,7 @@ describe('Verify Admin can force input info for investors', () => {
     // forcing investors to reenter their data
     it('Admin should be able to force input info for investors', () => {
         
- 
+        //need button [Terms and conditions] to appear for investor's profile
         
     });
 });
