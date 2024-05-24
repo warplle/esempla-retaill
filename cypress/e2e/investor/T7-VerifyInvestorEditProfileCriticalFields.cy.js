@@ -158,8 +158,6 @@ describe('Verify "Pending Verify" status of Investor when critical field is acti
         cy.get('[routerlink="profile-edit-management"]').click(); // clicking on the KYC Critical Fields option
         cy.DeactivateEmailCriticalField(emailCriticalField);
         
-
-
     });
 
 });

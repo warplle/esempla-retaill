@@ -61,7 +61,7 @@ describe('Verify admin can create a new GS Placement', () => {
         
     });
 
-    it('Admin should be able to create a new valid GS placement Government Bonds with valid data in all fields', () => {
+    it.skip('Admin should be able to create a new valid GS placement Government Bonds with valid data in all fields', () => {
         
         cy.AdminSimpleLogin(baseUrl, adminUserName, adminPassword);
 

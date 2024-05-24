@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "investor": "cypress run --file ..",
-    "operator": "cypress run --file ..",
+    "investor": "cypress run cypress/e2e/investor/*.js",
+    "operator": "cypress run cypress/e2e/adminOperator/*.js",
     "admin": "cypress run --file ..",
     "export": "...."
   },

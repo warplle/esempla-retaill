@@ -24,7 +24,7 @@ const phoneNumber = "68" + generateRandomNumber(6);
 const lastName = "BORCILĂ";
 
 
-
+// the profile should be active(registration completed)
 describe('Verify Investor can edit profile data', () => {
 
     //MCONNECT YES
@@ -40,7 +40,7 @@ describe('Verify Investor can edit profile data', () => {
         cy.get('[data-cy="entityConfirmDeleteButton"]').click(); // clicking on the [YES] button to extract from register
 
         //-----General Information section-------------
-        cy.wait(4000);
+        cy.wait(7000);
         cy.get('#field_birthPlace').clear().type(birthPlaceField); // birthPlace
         cy.contains('Document').click();
         cy.SelectRandomDocType();

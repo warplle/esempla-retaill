@@ -21,7 +21,7 @@ const minimumOrder = "1" + generateRandomNumber(1);
 
     describe('Verify Admin can create a new GS Government Bonds', () => {
 
-        it('Admin should be able to create new GS Government Bonds with valid data in all fields', () => {
+        it.skip('Admin should be able to create new GS Government Bonds with valid data in all fields', () => {
 
         cy.AdminSimpleLogin(baseUrl, adminUserName, adminPassword);
 

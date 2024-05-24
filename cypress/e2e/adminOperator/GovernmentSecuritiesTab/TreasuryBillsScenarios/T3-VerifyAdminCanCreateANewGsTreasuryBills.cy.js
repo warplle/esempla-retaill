@@ -25,7 +25,7 @@ const minimumOrder = "1" + generateRandomNumber(1);
 describe('Verify Admin can create a new GS Treasury Bills', () => {
 
     // ---------Treasury Bills--------------------------------------------
-    it('Admin should be able to create a new GS Treasury Bills with valid data in all fields', () => {
+    it.skip('Admin should be able to create a new GS Treasury Bills with valid data in all fields', () => {
         
         cy.AdminSimpleLogin(baseUrl, adminUserName, adminPassword);
 

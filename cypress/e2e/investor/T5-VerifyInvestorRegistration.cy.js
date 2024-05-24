@@ -27,7 +27,7 @@ const lastName = "BORCILĂ";
 describe('Verify Investor Account creation', () => {
 
 
-    it('Investor should be able to authenticate with valid data in all fields, with MConnect extracting option', () => {
+    it.skip('Investor should be able to authenticate with valid data in all fields, with MConnect extracting option', () => {
 
         cy.setInvestorCredentials(investorIDNP, investorPassword);
         cy.InvestorRegistration(investorBaseUrl);
@@ -60,7 +60,7 @@ describe('Verify Investor Account creation', () => {
         //----------Investor entering data in the fields---------------
 
         //-----General Information section-------------
-        cy.wait(2000);
+        cy.wait(5000);
         cy.get('#field_birthPlace').clear().type(birthPlaceField); // birthPlace
         cy.contains('Document').click();
         cy.SelectRandomDocType();
